@@ -1,0 +1,32 @@
+-- Criação do banco de dados
+CREATE DATABASE escola;
+
+-- Selecionar o banco de dados a ser usado
+USE escola;
+
+-- Tabela de Alunos
+CREATE TABLE alunos (
+    id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
+    telefone VARCHAR(15),
+    email VARCHAR(100) UNIQUE
+);
+
+-- Tabela de Cursos
+CREATE TABLE cursos (
+    id_curso INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT
+);
+
+-- Tabela de Matrículas
+CREATE TABLE matriculas (
+    id_matricula INT AUTO_INCREMENT PRIMARY KEY,
+    id_aluno INT,
+    id_curso INT,
+    data_matricula DATE NOT NULL,
+    FOREIGN KEY (id_aluno) REFERENCES alunos(id_aluno),
+    FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+);
